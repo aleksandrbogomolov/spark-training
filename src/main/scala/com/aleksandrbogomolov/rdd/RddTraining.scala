@@ -2,7 +2,7 @@ package com.aleksandrbogomolov.rdd
 
 import org.apache.spark.{SparkConf, SparkContext}
 
-object Main extends App {
+object RddTraining extends App {
 
   val sc = new SparkContext("local", "rdd", new SparkConf())
 

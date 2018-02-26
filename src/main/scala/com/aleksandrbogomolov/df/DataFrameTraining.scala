@@ -2,6 +2,7 @@ package com.aleksandrbogomolov.df
 
 import org.apache.spark.sql._
 import org.apache.spark.sql.types._
+import com.aleksandrbogomolov.helper.Conversion._
 
 object DataFrameTraining extends App {
 
@@ -13,7 +14,7 @@ object DataFrameTraining extends App {
     val rdd = spark.sparkContext.textFile(path)
     val columns = rdd.first().split(",").toList
     val schema = dfSchema(columns)
-    val rows = rdd.mapPartitionsWithIndex((i, it) => if (i == 0) it.drop(1) else it).map(splitRow(_).toList).map(row)
+    val rows = rdd.mapPartitionsWithIndex((i, it) => if (i == 0) it.drop(1) else it).map(splitRow).map(row)
     spark.createDataFrame(rows, schema)
   }
 
@@ -22,7 +23,7 @@ object DataFrameTraining extends App {
       :: columns.tail.map(StructField(_, StringType, nullable = false)))
   }
 
-  def splitRow(line: String): Array[String] = {
+  def splitRow(line: String): List[String] = {
     if (line.contains("\"")) {
       line.split("\"").map(removeComa)
     } else {

@@ -37,6 +37,9 @@ object DataFrameTraining extends App {
     Row(list.head.toString :: list.tail.map(_.toString): _*)
   }
 
-  moviesDF.show()
-  ratingsDF.show()
+  moviesDF.createOrReplaceTempView("movies")
+  ratingsDF.createOrReplaceTempView("ratings")
+
+  val joinByMovieId = spark.sql("select * from movies m join ratings r on m.movieId = r.movieId")
+  joinByMovieId.show()
 }

@@ -1,8 +1,8 @@
 package com.aleksandrbogomolov.df
 
+import com.aleksandrbogomolov.helper.Conversion._
 import org.apache.spark.sql._
 import org.apache.spark.sql.types._
-import com.aleksandrbogomolov.helper.Conversion._
 
 object DataFrameTraining extends App {
 

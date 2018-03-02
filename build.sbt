@@ -4,10 +4,12 @@ version := "0.1"
 
 scalaVersion := "2.11.12"
 
+val sparkVersion = "2.3.0"
+
 libraryDependencies ++= Seq(
-  "org.apache.spark" %% "spark-core" % "2.2.1",
-  "org.apache.spark" %% "spark-sql" % "2.2.1",
-  "org.apache.spark" %% "spark-streaming" % "2.2.1" % "provided",
-  "org.apache.spark" %% "spark-mllib" % "2.2.1",
-  "org.apache.spark" %% "spark-graphx" % "2.2.1"
+  "org.apache.spark" %% "spark-core" % sparkVersion,
+  "org.apache.spark" %% "spark-sql" % sparkVersion,
+  "org.apache.spark" %% "spark-streaming" % sparkVersion,
+  "org.apache.spark" %% "spark-mllib" % sparkVersion,
+  "org.apache.spark" %% "spark-graphx" % sparkVersion
 )
